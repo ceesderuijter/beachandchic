@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body>
+<!-- This goes in the Head of your document -->
+ <SCRIPT LANGUAGE="JavaScript">
+function msg() {
+document.e_mail.action = "mailto:" 
+mailtoandsubject = ((document.e_mail.sendmail.options[document.e_mail.sendmail.selectedIndex].value) + '?subject=' + document.e_mail.subject.value); 
+} 
+</SCRIPT> 
+
+<!-- This is the Form which goes in the body of your document -->
+<FORM NAME="e_mail" METHOD="post" ACTION="" ENCTYPE="text/plain" 
+          onSubmit="(document.e_mail.action += mailtoandsubject)"> 
+          
+          
+          <TABLE BORDER=0>
+          <TR VALIGN="top">
+          <TD>Recipient:</TD>
+          <TD><SELECT NAME="sendmail" onChange="msg(this.form)">
+          <OPTION VALUE="">-- Select --
+          <OPTION VALUE="cderuijter63@hotmail.com">Cees de Ruijter
+		  <OPTION VALUE="famderuijter@wanadoo.nl">Familie de Ruijter
+          </SELECT></TD>
+          </TR>
+          <TR VALIGN="top">
+          <TD>Your Name:</TD>
+          <TD><INPUT TYPE="text" SIZE=25 NAME="name" onChange="msg(this.form)"></TD>
+          </TR>
+          <TR VALIGN="top">
+          <TD>Your Email:</TD>
+          <TD><INPUT TYPE="text" SIZE=25 NAME="email" onChange="msg(this.form)"></TD>
+          </TR>
+          <TR VALIGN="top">
+          <TD>Subject:</TD>
+          <TD><INPUT TYPE="text" SIZE=25 NAME="subject" onChange="msg(this.form)"></TD>
+          </TR>
+          <TR VALIGN="top">
+          <TD>Message:<BR>
+          Please use<BR>
+          hard returns<BR>
+          (enter)</TD>
+          <TD><TEXTAREA NAME="message" COLS=35 ROWS=5 WRAP="physical" OnChange="msg(this.form)"></TEXTAREA></TD>
+          </TR>
+          <TR>
+          <TD> </TD>
+          <TD><INPUT TYPE="submit" VALUE="Send Message">
+          <INPUT TYPE="reset" VALUE="Reset"></TD>
+          </TR>
+          </TABLE>
+          </FORM> 
+
+</body>
+</html>

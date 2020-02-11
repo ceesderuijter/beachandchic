@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!--
+Dit is de gastenboek-pagina van Ziggo Webspace
+Nieuwe opmerkingen in het gastenboek worden geplaatst
+onder de regel --begin--. Verwijder of verander die regel
+niet, anders werkt het gastenboek niet meer.
+Dat geldt ook voor de regel --einde--.
+-->
+<html>
+	<head>
+		<title>Gastenboek</title>
+		<link href="./style.css" rel="stylesheet" type="text/css">
+		<script language="javascript" type="text/javascript" src="/@js/tiny_mce.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<!--begin formulier-->
+			<h1>Mijn Ziggo gastenboek invullen</h1>
+			<p>
+				Vul de volgende gegevens in om ze aan het gastenboek toe te voegen.
+				Je hoeft alleen je naam en opmerkingen in het formulier in te vullen.
+				Bedankt.
+			</p>
+
+			<hr>
+
+			<form action="/cgi-bin/guestbook.pl" name="frm" method="post" onsubmit="return submitForm();">
+				<script language="javascript" type="text/javascript">
+				tinyMCE.init({
+					mode: "textareas",
+					theme: "advanced",
+					plugins: "emotions,paste,directionality",
+					theme_advanced_buttons1: "bold,italic,underline,forecolor,separator,undo,redo,separator,cut,copy,paste,pastetext,pasteword,separator,removeformat,separator,emotions",
+					theme_advanced_buttons2: "",
+					theme_advanced_buttons3: "",
+					theme_advanced_toolbar_location: "top",
+					theme_advanced_toolbar_align: "left",
+					content_css: "/@rte.css",
+					file_browser_callback: "fileBrowserCallBack",
+					paste_use_dialog: false,
+					theme_advanced_resizing: false,
+					theme_advanced_resize_horizontal: false,
+					theme_advanced_link_targets: "_something=My somthing;_something2=My somthing2;_something3=My somthing3;",
+					paste_auto_cleanup_on_paste: true,
+					paste_convert_headers_to_strong: false,
+					paste_strip_class_attributes: "all",
+					paste_remove_spans: true,
+					paste_remove_styles: true
+				});
+
+				tinyMCE._def("language","nl");
+				tinyMCE._def("docs_language","nl");
+				tinyMCE.settings.language = "nl";
+
+				function fileBrowserCallBack(field_name, url, type, win) {
+					alert("Filebrowser callback: field_name: " + field_name + ", url: " + url + ", type: " + type);
+					win.document.forms[0].elements[field_name].value = "someurl.htm";
+				}
+
+				function submitForm() {
+					if (!document.frm.realname.value) {
+						alert("Je naam is niet ingevuld");
+						document.frm.realname.focus();
+						return false;
+					}
+					return true;
+				}
+				</script>
+
+				<table border="0" style="width: 100%;">
+					<tbody>
+						<tr>
+							<td valign=top width="110">Je naam:</td>
+							<td valign=top>
+								<input type="text" class="tekst" maxlength="250" name="realname">
+							</td>
+						</tr>
+						<tr>
+							<td valign=top>Homepage:</td>
+							<td valign=top>
+								<input type="text" class="tekst" maxlength="250" name="url">
+							</td>
+						</tr>
+						<tr>
+							<td valign=top>Plaats:</td>
+							<td valign=top>
+								<input type="text" class="tekst" maxlength="250" name="city">
+							</td>
+						</tr>
+						<tr>
+							<td valign=top>Land:</td>
+							<td valign=top>
+								<input type="text" class="tekst" maxlength="250" name="country" value="Nederland">
+							</td>
+						</tr>
+						<tr>
+							<td valign=top>Opmerkingen:</td>
+							<td valign=top>
+								<textarea rows="15" cols="60" name="comments"></textarea>
+							</td>
+						</tr>
+						<tr>
+							<td valign=top>&nbsp;</td>
+							<td>
+								<input type="submit" value="Plaats in gastenboek">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+			<!--eind formulier-->
+		</div>
+	</body>
+</html>
